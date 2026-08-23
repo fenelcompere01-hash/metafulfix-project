@@ -1,5 +1,5 @@
 {
-  "name": "metafulfix-project",
+  "name": "metafulfix-seo-engine",
   "private": true,
   "scripts": {
     "build": "react-router build",
