@@ -6,7 +6,6 @@ EXPOSE 3000
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV HOST=0.0.0.0
 
 COPY package.json package-lock.json* ./
 
@@ -16,4 +15,4 @@ COPY . .
 
 RUN npm run build
 
-CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && npm run start"]
+CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && HOST=0.0.0.0 npm run start"]
