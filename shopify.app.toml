@@ -1,5 +1,6 @@
 name = "metafulfix-seo-engine"
-client_id = "your_actual_client_id_here"
+client_id = "d923890ca434d8853ed11b28d26174b0"
+
 application_url = "https://distinguished-renewal-production-e79b.up.railway.app"
 embedded = true
 
