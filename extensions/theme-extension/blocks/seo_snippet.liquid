@@ -1,0 +1,29 @@
+{%- if request.page_type == 'product' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "image": {{ product.featured_image | image_url: width: 800 | json }},
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": {{ cart.currency.iso_code | json }},
+        "price": {{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' | json }},
+        "sku": {{ product.selected_or_first_available_variant.sku | json }},
+        "availability": "{% if product.selected_or_first_available_variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
+      }
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "SEO Rich Snippets",
+  "target": "head",
+  "settings": []
+}
+{% endschema %}
