@@ -7,4 +7,4 @@ RUN npm ci --omit=dev && npm cache clean --force
 COPY . . 
 RUN npm run build 
 EXPOSE 3000 
-CMD ["sh", "-c", "npm run setup && npx react-router-serve ./build/server/index.js"]
+CMD ["npm", "run", "docker-start"]
