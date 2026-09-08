@@ -6,9 +6,9 @@ import enTranslations from "@shopify/polaris/locales/en.json";
 
 export const loader = async ({ request }) => {
   const { session } = await authenticate.admin(request);
-  return { 
-    apiKey: process.env.SHOPIFY_API_KEY, 
-    shop: session.shop.replace(".myshopify.com", "") 
+  return {
+    apiKey: process.env.SHOPIFY_API_KEY,
+    shop: session.shop.replace(".myshopify.com", "")
   };
 };
 
@@ -47,11 +47,7 @@ export default function Index() {
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
                   <button
-  onClick={() => window.location.href = '/app/billing'}
-  style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
-  Manage Subscription
-</button>
-
+                    onClick={() => { window.location.href = '/app/billing'; }}
                     style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
                     Manage Subscription
                   </button>
