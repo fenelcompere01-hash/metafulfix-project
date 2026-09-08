@@ -35,7 +35,7 @@ export default function Index() {
                     <Text as="p">✅ Auto Product Price Sync</Text>
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
-                  <Button variant="primary" onClick={() => navigate("/app/billing")}>Manage Subscription</Button>
+                  <a href="/app/billing" style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", textDecoration:"none", fontWeight:"600"}}>Manage Subscription</a>
                 </BlockStack>
               </Card>
             </Layout.Section>
