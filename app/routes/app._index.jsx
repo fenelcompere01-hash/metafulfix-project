@@ -1,7 +1,10 @@
+import { useNavigate } from "@remix-run/react";
 import { AppProvider, Page, Layout, Card, Text, BlockStack, InlineStack, Badge, Button, Banner } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
 export default function Index() {
+  const navigate = useNavigate();
+
   return (
     <AppProvider i18n={enTranslations}>
       <Page title="SEO & Schema Engine">
@@ -32,7 +35,7 @@ export default function Index() {
                     <Text as="p">✅ Auto Product Price Sync</Text>
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
-                  <Button variant="primary" url="/app/billing">Manage Subscription</Button>
+                  <Button variant="primary" onClick={() => navigate("/app/billing")}>Manage Subscription</Button>
                 </BlockStack>
               </Card>
             </Layout.Section>
@@ -42,4 +45,3 @@ export default function Index() {
     </AppProvider>
   );
 }
-s
