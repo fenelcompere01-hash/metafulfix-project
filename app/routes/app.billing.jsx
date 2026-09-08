@@ -10,11 +10,10 @@ export const loader = async ({ request }) => {
   });
 
   if (!billingCheck.hasActivePayment) {
-    await billing.request({
+    return billing.request({
       plan: MONTHLY_PLAN,
       isTest: true,
       returnUrl: `https://admin.shopify.com/store/${shop.replace(".myshopify.com", "")}/apps/${process.env.SHOPIFY_API_KEY}`,
-      isTest: true,
     });
   }
 
@@ -25,4 +24,3 @@ export const loader = async ({ request }) => {
     },
   });
 };
-
