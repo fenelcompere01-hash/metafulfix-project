@@ -47,7 +47,11 @@ export default function Index() {
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
                   <button
-                    onClick={() => window.open(`https://admin.shopify.com/store/${shop}/charges/${apiKey}/pricing_plans`, '_top')}
+  onClick={() => window.location.href = '/app/billing'}
+  style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
+  Manage Subscription
+</button>
+
                     style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
                     Manage Subscription
                   </button>
