@@ -1,4 +1,3 @@
-import { redirect } from "react-router";
 import { authenticate, MONTHLY_PLAN, ANNUAL_PLAN } from "../shopify.server";
 
 export const loader = async ({ request }) => {
@@ -11,22 +10,19 @@ export const loader = async ({ request }) => {
   });
 
   if (!billingCheck.hasActivePayment) {
-    // No active plan — request one
-    return billing.request({
+    await billing.request({
       plan: MONTHLY_PLAN,
       isTest: true,
-      returnUrl: `https://admin.shopify.com/store/${shop.replace(
-        ".myshopify.com",
-        ""
-      )}/apps/${process.env.SHOPIFY_API_KEY}`,
+      returnUrl: `https://admin.shopify.com/store/${shop.replace(".myshopify.com", "")}/apps/${process.env.SHOPIFY_API_KEY}`,
+      isTest: true,
     });
   }
 
-  // Already subscribed — redirect to Shopify subscription management
-  return redirect(
-    `https://admin.shopify.com/store/${shop.replace(
-      ".myshopify.com",
-      ""
-    )}/charges/${process.env.SHOPIFY_API_KEY}/pricing_plans`
-  );
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: `https://admin.shopify.com/store/${shop.replace(".myshopify.com", "")}/charges/${process.env.SHOPIFY_API_KEY}/pricing_plans`,
+    },
+  });
 };
+
