@@ -35,7 +35,11 @@ export default function Index() {
                     <Text as="p">✅ Auto Product Price Sync</Text>
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
-                  <a href="/app/billing" style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", textDecoration:"none", fontWeight:"600"}}>Manage Subscription</a>
+                  <button 
+  onClick={() => window.open(`https://admin.shopify.com/store/metafulfix-dev-01/charges/${process.env.SHOPIFY_API_KEY}/pricing_plans`, '_top')}
+  style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
+  Manage Subscription
+</button>
                 </BlockStack>
               </Card>
             </Layout.Section>
