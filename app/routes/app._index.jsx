@@ -1,5 +1,3 @@
-@'
-import { useNavigate } from "react-router";
 import { useLoaderData } from "react-router";
 import { authenticate } from "../shopify.server";
 import { Page, Layout, Card, Text, BlockStack, InlineStack, Badge, Banner } from "@shopify/polaris";
@@ -14,8 +12,6 @@ export const loader = async ({ request }) => {
 
 export default function Index() {
   const { apiKey, shop } = useLoaderData();
-  const navigate = useNavigate();
-
   return (
     <Page title="SEO & Schema Engine">
       <BlockStack gap="500">
@@ -54,4 +50,3 @@ export default function Index() {
     </Page>
   );
 }
-'@ | Set-Content app\routes\app._index.jsx -Encoding UTF8
