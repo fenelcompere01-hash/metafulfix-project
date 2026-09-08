@@ -45,7 +45,7 @@ api_version = "2026-10"
   topics = [ "app/scopes_update" ]
 
 [auth]
-redirect_urls = [ "https://distinguished-renewal-production-e79b.up.railway.app/api/auth" ]
+redirect_urls = [ "https://distinguished-renewal-production-e79b.up.railway.app/auth/callback" ]
 
 [build]
 automatically_update_urls_on_dev = true
