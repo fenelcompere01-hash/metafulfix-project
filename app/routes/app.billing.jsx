@@ -1,4 +1,5 @@
-import { redirect } from "@remix-run/node";
+import { redirect } from "react-router";
+
 import { authenticate, MONTHLY_PLAN, ANNUAL_PLAN } from "../shopify.server";
 
 export const loader = async ({ request }) => {

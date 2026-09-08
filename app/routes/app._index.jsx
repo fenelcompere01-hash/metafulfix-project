@@ -1,4 +1,4 @@
-import { useNavigate } from "@remix-run/react";
+import { useNavigate } from "react-router";
 import { AppProvider, Page, Layout, Card, Text, BlockStack, InlineStack, Badge, Button, Banner } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
