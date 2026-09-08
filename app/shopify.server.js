@@ -1,3 +1,5 @@
+import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
+import prisma from "./db.server";
 import "@shopify/shopify-app-react-router/adapters/node";
 import {
   ApiVersion,
