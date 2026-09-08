@@ -1,8 +1,19 @@
 import { useNavigate } from "react-router";
-import { AppProvider, Page, Layout, Card, Text, BlockStack, InlineStack, Badge, Button, Banner } from "@shopify/polaris";
+import { useLoaderData } from "react-router";
+import { authenticate } from "../shopify.server";
+import { AppProvider, Page, Layout, Card, Text, BlockStack, InlineStack, Badge, Banner } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
+export const loader = async ({ request }) => {
+  const { session } = await authenticate.admin(request);
+  return { 
+    apiKey: process.env.SHOPIFY_API_KEY, 
+    shop: session.shop.replace(".myshopify.com", "") 
+  };
+};
+
 export default function Index() {
+  const { apiKey, shop } = useLoaderData();
   const navigate = useNavigate();
 
   return (
@@ -35,11 +46,11 @@ export default function Index() {
                     <Text as="p">✅ Auto Product Price Sync</Text>
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
-                  <button 
-  onClick={() => window.open(`https://admin.shopify.com/store/metafulfix-dev-01/charges/${process.env.SHOPIFY_API_KEY}/pricing_plans`, '_top')}
-  style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
-  Manage Subscription
-</button>
+                  <button
+                    onClick={() => window.open(`https://admin.shopify.com/store/${shop}/charges/${apiKey}/pricing_plans`, '_top')}
+                    style={{display:"inline-block", background:"#008060", color:"white", padding:"8px 16px", borderRadius:"6px", border:"none", fontWeight:"600", cursor:"pointer"}}>
+                    Manage Subscription
+                  </button>
                 </BlockStack>
               </Card>
             </Layout.Section>
@@ -49,4 +60,3 @@ export default function Index() {
     </AppProvider>
   );
 }
- 
