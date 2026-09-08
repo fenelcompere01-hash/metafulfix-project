@@ -2,10 +2,9 @@ import "@shopify/shopify-app-react-router/adapters/node";
 import {
   ApiVersion,
   AppDistribution,
+  BillingInterval,
   shopifyApp,
 } from "@shopify/shopify-app-react-router/server";
-import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
-import prisma from "./db.server";
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
@@ -17,8 +16,21 @@ const shopify = shopifyApp({
   sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
   future: {
-    expiringOfflineAccessTokens: true,
+  expiringOfflineAccessTokens: true,
+},
+billing: {
+  "Monthly subscription": {
+    amount: 9.99,
+    currencyCode: "USD",
+    interval: BillingInterval.Every30Days,
   },
+  "Annual subscription": {
+    amount: 99.99,
+    currencyCode: "USD",
+    interval: BillingInterval.Annual,
+  },
+},
+
   ...(process.env.SHOP_CUSTOM_DOMAIN
     ? { customShopDomains: [process.env.SHOP_CUSTOM_DOMAIN] }
     : {}),
@@ -31,4 +43,6 @@ export const authenticate = shopify.authenticate;
 export const unauthenticated = shopify.unauthenticated;
 export const login = shopify.login;
 export const registerWebhooks = shopify.registerWebhooks;
-export const sessionStorage = shopify.sessionStorage;
+export const MONTHLY_PLAN = "Monthly subscription";
+export const ANNUAL_PLAN = "Annual subscription";
+

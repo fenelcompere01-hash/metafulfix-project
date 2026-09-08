@@ -32,7 +32,7 @@ export default function Index() {
                     <Text as="p">✅ Auto Product Price Sync</Text>
                     <Text as="p">✅ Google Indexing Readiness</Text>
                   </BlockStack>
-                  <Button variant="primary">Manage Subscription</Button>
+                  <Button variant="primary" url="/app/billing">Manage Subscription</Button>
                 </BlockStack>
               </Card>
             </Layout.Section>
@@ -42,3 +42,4 @@ export default function Index() {
     </AppProvider>
   );
 }
+s
