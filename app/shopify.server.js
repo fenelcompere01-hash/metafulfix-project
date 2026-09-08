@@ -1,30 +1,29 @@
-python -c "
-content = '''import { PrismaSessionStorage } from \"@shopify/shopify-app-session-storage-prisma\";
-import prisma from \"./db.server\";
-import \"@shopify/shopify-app-react-router/adapters/node\";
+import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
+import prisma from "./db.server";
+import "@shopify/shopify-app-react-router/adapters/node";
 import {
   ApiVersion,
   AppDistribution,
   BillingInterval,
   shopifyApp,
-} from \"@shopify/shopify-app-react-router/server\";
+} from "@shopify/shopify-app-react-router/server";
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
-  apiSecretKey: process.env.SHOPIFY_API_SECRET || \"\",
+  apiSecretKey: process.env.SHOPIFY_API_SECRET || "",
   apiVersion: ApiVersion.July26,
-  scopes: process.env.SCOPES?.split(\",\"),
-  appUrl: process.env.SHOPIFY_APP_URL || \"\",
-  authPathPrefix: \"/auth\",
+  scopes: process.env.SCOPES?.split(","),
+  appUrl: process.env.SHOPIFY_APP_URL || "",
+  authPathPrefix: "/auth",
   sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
   future: { expiringOfflineAccessTokens: true },
   billing: {
-    \"Monthly subscription\": {
-      lineItems: [{ amount: 9.99, currencyCode: \"USD\", interval: BillingInterval.Every30Days }],
+    "Monthly subscription": {
+      lineItems: [{ amount: 9.99, currencyCode: "USD", interval: BillingInterval.Every30Days }],
     },
-    \"Annual subscription\": {
-      lineItems: [{ amount: 99.99, currencyCode: \"USD\", interval: BillingInterval.Annual }],
+    "Annual subscription": {
+      lineItems: [{ amount: 99.99, currencyCode: "USD", interval: BillingInterval.Annual }],
     },
   },
   ...(process.env.SHOP_CUSTOM_DOMAIN ? { customShopDomains: [process.env.SHOP_CUSTOM_DOMAIN] } : {}),
@@ -37,8 +36,5 @@ export const authenticate = shopify.authenticate;
 export const unauthenticated = shopify.unauthenticated;
 export const login = shopify.login;
 export const registerWebhooks = shopify.registerWebhooks;
-export const MONTHLY_PLAN = \"Monthly subscription\";
-export const ANNUAL_PLAN = \"Annual subscription\";
-'''
-open('app/shopify.server.js', 'w').write(content)
-"
+export const MONTHLY_PLAN = "Monthly subscription";
+export const ANNUAL_PLAN = "Annual subscription";
